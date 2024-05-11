@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>bg1.jpg</file>
+        <file>bg2.jpg</file>
+        <file>bg3.jpg</file>
+        <file>bg4.jpg</file>
+    </qresource>
+    <qresource prefix="/sounds">
+        <file>bgsound.mp3</file>
+    </qresource>
+</RCC>
