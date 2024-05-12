@@ -26,7 +26,7 @@ void Enemy::timerEvent(QTimerEvent *)
     for(auto item:itemList){
         if(typeid(*item)==typeid(Player)){
             //健康值需要decrease
-            Health::getInstance().decrease();
+            Health::getInstance().decrease1();
             scene()->removeItem(this);
             delete this;
             return;

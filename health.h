@@ -11,7 +11,8 @@ class Health : public QGraphicsTextItem
 public:
     Health(QGraphicsItem* parent=nullptr);
     int getHealth(){return health;}
-    void decrease();
+    void decrease1();
+    void decrease2();
     void reset();
     static Health& getInstance(){
         static Health obj;

@@ -1,7 +1,0 @@
-<RCC>
-    <qresource prefix="/image2">
-        <file>bullet.jpg</file>
-        <file>flight.jpg</file>
-        <file>enemy.jpg</file>
-    </qresource>
-</RCC>

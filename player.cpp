@@ -1,8 +1,9 @@
-#include "player.h"
+﻿#include "player.h"
 #include<QPixmap>
 #include"GameSetting.h"
 #include<QKeyEvent>
 #include"enemy.h"
+#include"stone.h"
 #include"bullet.h"
 #include<QGraphicsScene>
 #include"health.h"
@@ -20,7 +21,6 @@ Player::Player(QGraphicsItem *parent):QGraphicsPixmapItem(parent)
     setFlag(QGraphicsItem::ItemIsFocusable);
     setFocus();
     startTimer(500);
-
 }
 
 
@@ -55,9 +55,14 @@ void Player::keyPressEvent(QKeyEvent *event)
 
 void Player::enemySpawn()
 {
-
     Enemy* enemy=new Enemy;
     scene()->addItem(enemy);
+}
+
+void Player::stoneSpawn()
+{
+    Stone* stone=new Stone;
+    scene()->addItem(stone);
 }
 
 void Player::gameOver()
@@ -65,6 +70,12 @@ void Player::gameOver()
     playing=false;
     for(auto item:scene()->items()){
         if(typeid(*item)==typeid(Enemy)){
+            scene()->removeItem(item);
+            delete item;
+        }
+    }
+    for(auto item:scene()->items()){
+        if(typeid(*item)==typeid(Stone)){
             scene()->removeItem(item);
             delete item;
         }
@@ -92,6 +103,7 @@ void Player::timerEvent(QTimerEvent *)
 {
     if(playing){
     enemySpawn();
+    stoneSpawn();
     }
     if(Health::getInstance().getHealth()<=0){
         gameOver();

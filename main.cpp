@@ -11,7 +11,7 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    a.setApplicationDisplayName("飞机大战");
+    a.setApplicationDisplayName("星空大战");
     QApplication::setWindowIcon(QIcon(":/image2/flight.jpg"));
     //创建player
     Player* player=new Player;

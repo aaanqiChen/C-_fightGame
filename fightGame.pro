@@ -14,7 +14,8 @@ SOURCES += \
     health.cpp \
     main.cpp \
     player.cpp \
-    score.cpp
+    score.cpp \
+    stone.cpp
 
 HEADERS += \
     GameSetting.h \
@@ -22,7 +23,8 @@ HEADERS += \
     enemy.h \
     health.h \
     player.h \
-    score.h
+    score.h \
+    stone.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

@@ -5,12 +5,17 @@ Health::Health(QGraphicsItem* parent):QGraphicsTextItem(parent) {
     reset();
 }
 
-void Health::decrease()
+void Health::decrease1()
 {
     --health;
     setPlainText("健康值："+QString::number(health));
 }
-
+void Health::decrease2()
+{
+    --health;
+    --health;
+    setPlainText("健康值："+QString::number(health));
+}
 void Health::reset()
 {
     health=GameSetting::HealthStart;

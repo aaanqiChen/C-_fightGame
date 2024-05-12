@@ -17,5 +17,11 @@ void Score::reset()
 void Score::increase()
 {
     ++score;
+    ++score;
+    setPlainText("分 数："+QString::number(score));
+}
+void Score::decrease()
+{
+    --score;
     setPlainText("分 数："+QString::number(score));
 }
