@@ -4,9 +4,9 @@
 #include<QRandomGenerator>
 #include<QGraphicsScene>
 #include"player.h"
+#include"health.h"
 #include"bullet.h"
 #include"score.h"
-#include"health.h"
 
 Stone::Stone(QGraphicsItem* parent):QGraphicsPixmapItem(parent)
 {
@@ -17,6 +17,7 @@ Stone::Stone(QGraphicsItem* parent):QGraphicsPixmapItem(parent)
     setPos(randomNumber,0);
     startTimer(GameSetting::StoneTimer);
 }
+
 
 void Stone::timerEvent(QTimerEvent *)
 {
@@ -30,7 +31,7 @@ void Stone::timerEvent(QTimerEvent *)
             return;
         }
         if(typeid(*item)==typeid(Bullet)){
-            //需要减分
+            //需要加分
             Score::getInstance().decrease();
             scene()->removeItem(item);
             scene()->removeItem(this);
@@ -43,8 +44,5 @@ void Stone::timerEvent(QTimerEvent *)
     if(y()>GameSetting::SceneHeight){
         scene()->removeItem(this);
         delete this;
-        return;
     }
 }
-
-

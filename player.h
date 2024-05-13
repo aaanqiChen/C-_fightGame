@@ -16,9 +16,10 @@ public:
 protected:
     virtual void keyPressEvent(QKeyEvent *event) override;
 private:
-    void enemySpawn();
+    void starSpawn();
     void stoneSpawn();
     void gameOver();
+    void gamewin();
 
     // QObject interface
 protected:

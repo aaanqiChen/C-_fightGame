@@ -9,6 +9,7 @@ class Score : public QGraphicsTextItem
     Q_OBJECT
 public:
     Score(QGraphicsItem *parent = nullptr);
+    int getScore(){return score;}
     void increase();
     void decrease();
      void reset();

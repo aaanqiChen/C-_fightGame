@@ -2,7 +2,7 @@
 #include<QPixmap>
 #include"GameSetting.h"
 #include<QKeyEvent>
-#include"enemy.h"
+#include"star.h"
 #include"stone.h"
 #include"bullet.h"
 #include<QGraphicsScene>
@@ -10,6 +10,7 @@
 #include"score.h"
 #include<QGraphicstextItem>
 #include<QFontMetrics>
+#include<QApplication>
 using namespace GameSetting;
 Player::Player(QGraphicsItem *parent):QGraphicsPixmapItem(parent)
 {
@@ -53,10 +54,10 @@ void Player::keyPressEvent(QKeyEvent *event)
     }
 }
 
-void Player::enemySpawn()
+void Player::starSpawn()
 {
-    Enemy* enemy=new Enemy;
-    scene()->addItem(enemy);
+    Star* star=new Star;
+    scene()->addItem(star);
 }
 
 void Player::stoneSpawn()
@@ -69,7 +70,7 @@ void Player::gameOver()
 {
     playing=false;
     for(auto item:scene()->items()){
-        if(typeid(*item)==typeid(Enemy)){
+        if(typeid(*item)==typeid(Star)){
             scene()->removeItem(item);
             delete item;
         }
@@ -98,14 +99,49 @@ void Player::gameOver()
     }
 }
 
+void Player::gamewin()
+{
+    playing=false;
+    for(auto item:scene()->items()){
+        if(typeid(*item)==typeid(Star)){
+            scene()->removeItem(item);
+            delete item;
+        }
+    }
+    for(auto item:scene()->items()){
+        if(typeid(*item)==typeid(Stone)){
+            scene()->removeItem(item);
+            delete item;
+        }
+    }
+    if(!messageItem){
+        messageItem=new QGraphicsTextItem;
+        scene()->addItem(messageItem);
+        QString message("Congradulations!按“S”键继续");
+        messageItem->setPlainText(message);
+        messageItem->setDefaultTextColor(Qt::black);
+        QFont font("Courier New",GameSetting::FontSize*2,QFont::Bold);
+        messageItem->setFont(font);
+        QFontMetrics fm(font);
+        int msgWidth=fm.horizontalAdvance(message);
+        messageItem->setPos(GameSetting::SceneWidth/2-msgWidth/2,
+                            GameSetting::SceneHeight/2);    
+    }
+    else
+        messageItem->show();
+}
+
 
 void Player::timerEvent(QTimerEvent *)
 {
     if(playing){
-    enemySpawn();
+    starSpawn();
     stoneSpawn();
     }
     if(Health::getInstance().getHealth()<=0){
         gameOver();
+    }
+    if(Score::getInstance().getScore()>=100){
+        gamewin();
     }
 }

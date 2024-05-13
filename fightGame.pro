@@ -10,20 +10,20 @@ CONFIG += c++17
 
 SOURCES += \
     bullet.cpp \
-    enemy.cpp \
     health.cpp \
     main.cpp \
     player.cpp \
     score.cpp \
+    star.cpp \
     stone.cpp
 
 HEADERS += \
     GameSetting.h \
     bullet.h \
-    enemy.h \
     health.h \
     player.h \
     score.h \
+    star.h \
     stone.h
 
 # Default rules for deployment.

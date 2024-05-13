@@ -10,9 +10,9 @@ const int FontSize=16;
 const float PlayerScale=0.04;
 const int PlayerMoveSpeed=5;
 
-const float EnemyScale=0.05;
-const int EnemyTimer=50;
-const int EnemySpeed=5;
+const float StarScale=0.05;
+const int StarTimer=50;
+const int StarSpeed=5;
 
 const float StoneScale=0.05;
 const int StoneTimer=50;

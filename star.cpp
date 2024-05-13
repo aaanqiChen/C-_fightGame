@@ -1,4 +1,4 @@
-#include "enemy.h"
+#include "star.h"
 #include<QPixmap>
 #include"GameSetting.h"
 #include<QRandomGenerator>
@@ -8,19 +8,19 @@
 #include"score.h"
 #include"health.h"
 
-Enemy::Enemy(QGraphicsItem* parent):QGraphicsPixmapItem(parent)
+Star::Star(QGraphicsItem* parent):QGraphicsPixmapItem(parent)
 {
-    setPixmap(QPixmap(":/image2/enemy.jpg"));
-    setScale(GameSetting::EnemyScale);
-    int max=GameSetting::SceneWidth-boundingRect().width()*GameSetting::EnemyScale;
+    setPixmap(QPixmap(":/image2/star.jpg"));
+    setScale(GameSetting::StarScale);
+    int max=GameSetting::SceneWidth-boundingRect().width()*GameSetting::StarScale;
     int randomNumber=QRandomGenerator::global()->bounded(1,max);
     setPos(randomNumber,0);
-    startTimer(GameSetting::EnemyTimer);
+    startTimer(GameSetting::StarTimer);
 
 }
 
 
-void Enemy::timerEvent(QTimerEvent *)
+void Star::timerEvent(QTimerEvent *)
 {
     QList<QGraphicsItem*>itemList=collidingItems();
     for(auto item:itemList){
@@ -41,7 +41,7 @@ void Enemy::timerEvent(QTimerEvent *)
             return;
         }
     }
-    setPos(x(),y()+GameSetting::EnemySpeed);
+    setPos(x(),y()+GameSetting::StarSpeed);
     if(y()>GameSetting::SceneHeight){
         scene()->removeItem(this);
         delete this;
